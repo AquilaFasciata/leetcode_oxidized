@@ -1,3 +1,6 @@
+use std::{thread::sleep, time::Duration};
+
+#[allow(dead_code)]
 struct Solution {
     placeholder: i32
 }
@@ -48,7 +51,7 @@ impl Solution {
         let sum = first_num + second_num;
         let binding = sum.to_string();
         let sum = binding.as_str();
-        let mut head_node: ListNode;
+        let mut head_node: ListNode = ListNode::new(0);
         for num in sum.chars() {
             head_node.next = Some(Box::new(ListNode::new(num as i32)));
             head_node = *head_node.next.clone().unwrap();
@@ -59,6 +62,27 @@ impl Solution {
 }
 
 fn main() {
-    let _test: Solution;
+    let test = ListNode {
+        val: 2,
+        next: Some(Box::new(ListNode {
+            val: 4,
+            next: Some(Box::new(ListNode {
+                val: 3,
+                next: None
+            }))
+        }))
+    };
+    let test2 = ListNode {
+        val: 5,
+        next: Some(Box::new(ListNode {
+            val: 6,
+            next: Some(Box::new(ListNode {
+                val: 4,
+                next: None
+            }))
+        }))
+    };
+    let _val_add = Solution::add_two_numbers(Some(Box::new(test)), Some(Box::new(test2)));
+    sleep(Duration::new(100, 0));
     println!("Hello, world!");
 }
