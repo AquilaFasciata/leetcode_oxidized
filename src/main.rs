@@ -14,14 +14,19 @@ impl Solution {
         for letter in s {
             if char_dict.contains_key(&letter) {
                 char_dict.clear();
+                char_dict.insert(letter, 1);
                 if temp_substr > longest_substr {
                     longest_substr = temp_substr;
                 }
-                temp_substr = 0;
+                temp_substr = 1;
             } else {
                 char_dict.insert(letter, 1);
                 temp_substr += 1;
             }
+        }
+
+        if temp_substr > longest_substr {
+            return temp_substr;
         }
         return longest_substr;
     }
