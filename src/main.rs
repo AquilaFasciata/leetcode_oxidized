@@ -1,33 +1,21 @@
-use std::{cmp::max, collections::HashSet};
+use std::{char, collections::HashMap};
 
 struct Solution {
-    _placeholder: i32,
+    _placeholder: i32
 }
 
 impl Solution {
-    pub fn length_of_longest_substring(s: String) -> i32 {
-        let mut char_set: HashSet<char> = HashSet::new();
-        let mut left_ind = 0;
-        //right_ind is the letter.0 in the enumerated for loop
-        let mut result = 0;
-
-        for letter in s.clone().chars().enumerate() {
-            loop {
-                if !char_set.insert(letter.1) {
-                    char_set.remove(&s.chars().nth(left_ind as usize).unwrap());
-                    left_ind += 1;
-                } else {
-                    break;
-                }
-            }
-            result = max(result, (letter.0 as i32) - left_ind + 1);
+    pub fn minimum_pushes(word: String) -> i32 {
+        let mut weight_map: HashMap<char, i32> = HashMap::with_capacity(26);
+        for letter in word.chars() {
+            let letter_weight = weight_map.entry(letter).or_insert(0);
+            *letter_weight += 1;
         }
-        return result;
+
+        return 0_i32;
     }
 }
 
 fn main() {
-    let out = Solution::length_of_longest_substring(String::from("pwwkew"));
-    println!("{out}");
-    println!("Hello, world!");
+
 }
